@@ -12,7 +12,7 @@ router.get("/get", async (req,res) => {
 
 router.post("/post", async (req, res) =>{
     var response = await req.body;
-    console.log(response);
+    console.log(response.func);
 });
 
 
