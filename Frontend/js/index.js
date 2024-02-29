@@ -1,15 +1,30 @@
+const { response } = require("express");
+
 const p = document.getElementById("get");
-const input = document.getElementById("input");
+const inputId = document.getElementById("id");
+const inputPass = document.getElementById("password");
+const listQnt  =  document.getElementById("qnt-objetos");
+const listVerm = document.getElementById("qnt-vermelho");
+const listAzul = document.getElementById("qnt-azul");
+const listVerd = document.getElementById("qnt-verde");
+const listTempo = document.getElementById("tempo-dec");
+
 
 function submit(){
-    let cmd = input.value
+    let id = inputId.value
+    let pass = inputPass.value
+    
+
 
     axios({
         method: "post",
         url: "http://localhost:8081/methods/post",
         data:{
-            func: cmd
+            id:id,
+            password: pass
         }
+    }).then((response) =>{
+        console.log(response);
     });
     
 }

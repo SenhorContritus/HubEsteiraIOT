@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Esteira IOT</title>
 </head>
 <body>
 
@@ -11,10 +11,18 @@
 
         SERVER:OFFLINE
     </p>
-    <input id="input"type="text" placeholder="id"> 
-    <input type="button" onclick="submit()" value="a">
+    <input id="input"type="text" placeholder="id">
     <input type="password" placeholder="password">
-    <input type="button" value="a">
+    <input type="button" value="a" onlclick="submit()">
+
+    <ul id="lista">
+        <li id="qnt-objetos"></li>
+        <li id="qnt-azul"></li>
+        <li id="qnt-vermelho"></li>
+        <li id="qnt-verde"></li>
+        <li id="tempo-dec"></li>
+    </ul>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./js/index.js"></script>
    
