@@ -16,8 +16,6 @@ function submit(){
 
 
 
-
-
 axios({
     method: "get",
     url: "http://localhost:8081/methods/get"

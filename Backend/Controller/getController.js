@@ -6,13 +6,13 @@ const router = express.Router();
 router.get("/get", async (req,res) => {
 
     res.send("SERVER:OK");
-    console.log(req.socket.remoteAddress);
+    console.log();
 
 })
 
 router.post("/post", async (req, res) =>{
     var response = await req.body;
-    console.log(response.func);
+    console.log(response);
 });
 
 
