@@ -8,6 +8,7 @@ const fs = require("fs");
 router.get("/get", async (req,res) => {
 
     res.send("SERVER:OK");
+    console.log("ta indo");
 
 })
 
@@ -18,16 +19,14 @@ router.post("/post", async (req, res) =>{
 
     if(id === ID){
         if(password === PASS){
-            console.log("User login OK");
-            let dados = fs.readFileSync("./Database/info.json");
-            res.send(dados);            
+            res.send("User login OK");         
 
         }else{
-            console.log("Password is incorrect!");
+            res.send("Password is incorrect!");
         }
 
     }else{
-        console.log("Incorrect ID!");
+        res.send("Incorrect ID!");
     }
 
 

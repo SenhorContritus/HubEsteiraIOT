@@ -17,7 +17,7 @@ function submit(){
 
     axios({
         method: "post",
-        url: "http://localhost:8081/methods/post",
+        url: "https://383a-200-145-153-160.ngrok-free.app/methods/get",
         data:{
             id:id,
             password: pass
@@ -39,7 +39,7 @@ function submit(){
 
 axios({
     method: "get",
-    url: "http://localhost:8081/methods/get"
+    url: "https://383a-200-145-153-160.ngrok-free.app/methods/get"
 }).then((response) => {
     console.log(response.data);
     p.innerHTML = response.data;
