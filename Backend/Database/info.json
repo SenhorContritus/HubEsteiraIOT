@@ -1,7 +1,7 @@
 {
-    "verm":0 ,
-    "azul":0,
-    "verd":0,
-    "tempo": 0,
-    "total": 0
+    "verm":2 ,
+    "azul":3,
+    "verd":1,
+    "tempo": "10:10:1000",
+    "total": 6
 }

@@ -1,6 +1,5 @@
-const { response } = require("express");
 
-const p = document.getElementById("get");
+const p = document.getElementById("s-stats");
 const inputId = document.getElementById("id");
 const inputPass = document.getElementById("password");
 const listQnt  =  document.getElementById("qnt-objetos");
@@ -11,9 +10,9 @@ const listTempo = document.getElementById("tempo-dec");
 
 
 function submit(){
-    let id = inputId.value
-    let pass = inputPass.value
-    
+    let id = inputId.value;
+    let pass = inputPass.value;
+    console.log(pass);
 
 
     axios({
@@ -25,6 +24,13 @@ function submit(){
         }
     }).then((response) =>{
         console.log(response);
+        var data = response.data;
+        listVerm.innerHTML = data.verm;
+        listVerd.innerHTML = data.verd;
+        listAzul.innerHTML = data.azul;
+        listQnt.innerHTML = data.total;
+        listTempo.innerHTML = data.tempo;
+        
     });
     
 }
@@ -36,7 +42,7 @@ axios({
     url: "http://localhost:8081/methods/get"
 }).then((response) => {
     console.log(response.data);
-    p.innerText = response.data;
+    p.innerHTML = response.data;
 });
 
 

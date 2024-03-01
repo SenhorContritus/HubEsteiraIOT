@@ -16,7 +16,7 @@ exports.handler = async (event) =>{
         }
     }
 
-    return response
+    return response;
 }
 server.use(cors())
 server.use(bodyParser.json())
