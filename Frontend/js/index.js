@@ -7,7 +7,7 @@ const listVerm = document.getElementById("qnt-vermelho");
 const listAzul = document.getElementById("qnt-azul");
 const listVerd = document.getElementById("qnt-verde");
 const listTempo = document.getElementById("tempo-dec");
-
+const url = "https://b078-186-217-113-196.ngrok-free.app";
 
 function submit(){
     let id = inputId.value;
@@ -17,7 +17,7 @@ function submit(){
 
     axios({
         method: "post",
-        url: "https://a8db-170-81-191-91.ngrok-free.app/methods/get",
+        url: url+"/methods/get",
         data:{
             id:id,
             password: pass
@@ -39,7 +39,7 @@ function submit(){
 
 axios({
     method: "get",
-    url: "https://a8db-170-81-191-91.ngrok-free.app/methods/get"
+    url: url+"/methods/get"
 }).then((response) => {
     console.log(response.data);
     p.innerHTML = response.data;
@@ -48,10 +48,14 @@ axios({
 
 
 setInterval(() => {
-    axios({
-        method:"get",
-        url:"https://a8db-170-81-191-91.ngrok-free.app/methods/mqtt"
-    }).then((response) => {
-        console.log(response.data);
-    })
-},1000);
+    try {
+        axios({
+            method:"get",
+            url:url+"/methods/mqtt"
+        }).then((response) => {
+            console.log(response.data);
+        })  
+    } catch (error) {
+        
+    }
+},100);

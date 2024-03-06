@@ -2,20 +2,25 @@ const express = require("express");
 const router = express.Router();
 const ID = "admin";
 const PASS = "admin";
-const fs = require("fs");
 const client = require("../index.js");
-const payload = require("../index.js");
 
 router.get("/mqtt", async (req, res) =>{
 
-    res.send(payload);
     
+    client.on("message" ,( topic , payload)  =>{
+        try {
+            res.status(200).json({valor : payload.toString()});
+        } catch (error) {
+            
+        }
+    });
+
 });
 
 router.get("/get", async (req,res) => {
 
-    res.send("SERVER:OK");
-    console.log("ta indo");
+    res.send("SERVER:ONLINE");
+    console.log("Conexão estabelecida com o front");
 
 })
 

@@ -11,24 +11,23 @@ const client = mqtt.connect(mtqqURL,{
     connectTimeout: 4000,
     username: 'server',
     password: 'public',
-    reconnectPeriod: 1000
+    reconnectPeriod: 1000   
 });
+
 client.on('connect', () =>{
     console.log("Conectado ao servidor mqtt");
     
     client.subscribe('/esteira/receber/', () =>{
         console.log("subscribed on /esteira/receber/");
+
     });
 
 })
 client.on("message" ,( topic , payload)  =>{
     console.log("mensagem:", payload.toString());
-    var payload = payload.toString();
-    module.exports = payload;
 });
 
 module.exports = client;
-
 
 exports.handler = async (event) =>{
     const response = {
@@ -45,13 +44,8 @@ exports.handler = async (event) =>{
 server.use(cors())
 server.use(bodyParser.json())
 
-
-
 require("./Controller/getController")(server);
 
-
-
-
-server.listen("80" , () =>{
+server.listen("8081" , () =>{
     console.log("Server is running on port 8081! ");
 });
