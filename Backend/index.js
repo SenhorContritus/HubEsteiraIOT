@@ -2,8 +2,32 @@ const express = require("express");
 const server = express();
 const cors = require("cors")
 const bodyParser = require("body-parser");
+const mqtt = require("mqtt");
+const mtqqURL = "mtqq://broker.hivemq.com";
+const clientID = `mqtt_${Math.random().toString(16).slice(3)}`;
+const client = mqtt.connect(mtqqURL,{
+    clientID,
+    clean: true,
+    connectTimeout: 4000,
+    username: 'server',
+    password: 'public',
+    reconnectPeriod: 1000
+});
+client.on('connect', () =>{
+    console.log("Conectado ao servidor mqtt");
+    
+    client.subscribe('/esteira/receber/', () =>{
+        console.log("subscribed on /esteira/receber/");
+    });
 
+})
+client.on("message" ,( topic , payload)  =>{
+    console.log("mensagem:", payload.toString());
+    var payload = payload.toString();
+    module.exports = payload;
+});
 
+module.exports = client;
 
 
 exports.handler = async (event) =>{

@@ -17,7 +17,7 @@ function submit(){
 
     axios({
         method: "post",
-        url: "https://383a-200-145-153-160.ngrok-free.app/methods/get",
+        url: "https://a8db-170-81-191-91.ngrok-free.app/methods/get",
         data:{
             id:id,
             password: pass
@@ -39,7 +39,7 @@ function submit(){
 
 axios({
     method: "get",
-    url: "https://383a-200-145-153-160.ngrok-free.app/methods/get"
+    url: "https://a8db-170-81-191-91.ngrok-free.app/methods/get"
 }).then((response) => {
     console.log(response.data);
     p.innerHTML = response.data;
@@ -47,3 +47,11 @@ axios({
 
 
 
+setInterval(() => {
+    axios({
+        method:"get",
+        url:"https://a8db-170-81-191-91.ngrok-free.app/methods/mqtt"
+    }).then((response) => {
+        console.log(response.data);
+    })
+},1000);

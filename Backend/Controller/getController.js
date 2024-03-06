@@ -3,7 +3,14 @@ const router = express.Router();
 const ID = "admin";
 const PASS = "admin";
 const fs = require("fs");
+const client = require("../index.js");
+const payload = require("../index.js");
 
+router.get("/mqtt", async (req, res) =>{
+
+    res.send(payload);
+    
+});
 
 router.get("/get", async (req,res) => {
 
