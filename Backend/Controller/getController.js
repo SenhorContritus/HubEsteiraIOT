@@ -3,6 +3,8 @@ const router = express.Router();
 const ID = "admin";
 const PASS = "admin";
 const client = require("../index.js");
+process.setMaxListeners(0);
+require('events').EventEmitter.defaultMaxListeners = 0;
 
 router.get("/mqtt", async (req, res) =>{
 
