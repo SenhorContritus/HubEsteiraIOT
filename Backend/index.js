@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 const mqtt = require("mqtt");
 const mtqqURL = "mtqq://broker.hivemq.com";
 const clientID = `mqtt_${Math.random().toString(16).slice(3)}`;
-process.setMaxListeners(0)
+process.setMaxListeners(0);
+require('events').EventEmitter.defaultMaxListeners = 15;
 const client = mqtt.connect(mtqqURL,{
     clientID,
     clean: true,
