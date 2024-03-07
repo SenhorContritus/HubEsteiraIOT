@@ -16,7 +16,7 @@ var total = 0;
 
 
 
-const url = "https://0d15-2804-389-98-b22e-34cb-aa65-6032-1554.ngrok-free.app";
+const url = "https://0825-2804-389-98-b22e-a9d1-72bc-5df3-c1e2.ngrok-free.app";
 
 function submit(){
     let id = inputId.value;
