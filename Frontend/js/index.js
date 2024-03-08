@@ -65,20 +65,20 @@ setInterval(() => {
             if(valSplit[0] === "blue" )
             {
                 azul = valSplit[1];
-                total = total + parseInt(valSplit[1]);
+                total = valSplit[2];
                 listAzul.innerHTML = azul;
                 listQnt.innerHTML = total;
 
             }else if(valSplit[0] === "green"){
 
                 verde = valSplit[1];
-                total = parseInt(valSplit[1]);
+                total = valSplit[2];
                 listVerd.innerHTML = verde;
                 listQnt.innerHTML = total;
 
             }else if(valSplit[0] === "red"){
                 vermelho = valSplit[1];
-                total = parseInt(valSplit[1]);
+                total = valSplit[2];
                 listVerm.innerHTML = vermelho;
                 listQnt.innerHTML = total;
             }
