@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 const p = document.getElementById("s-stats");
 const inputId = document.getElementById("id");
 const inputPass = document.getElementById("password");
@@ -14,7 +16,7 @@ var vermelho = 0;
 var verde =0;
 var total = 0;
 
-const url = "https://7dc1-186-224-19-83.ngrok-free.app";
+const url = "http://localhost:8081";
 
 function submit(){
     let id = inputId.value;
@@ -37,6 +39,20 @@ function submit(){
         inputPass.style.display = "none";
         buttonLogin.style.display = "none";
     });
+    
+}
+
+function mqttMsg(){
+    axios({
+        method: post,
+        url: url + "methods/mqtt/post",
+        data:{
+            msg: document.getElementById("msgMqtt").value 
+        }
+    }).then(async (response) => {
+        console.log("foi");
+    })
+
     
 }
 
@@ -85,7 +101,7 @@ setInterval(() => {
             
             
         })  
-    } catch (error) {
-        
+    }catch (err) {
+        console.log("Servidor foi de arrasta");
     }
-},1500);
+},2000);

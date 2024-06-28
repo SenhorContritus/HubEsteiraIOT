@@ -46,6 +46,15 @@ router.post("/post", async (req, res) =>{
 
 });
 
+router.post("/mqtt/post" , async (req,res) =>{
+
+    const response = await req.body;
+    var message = response.msg;
+    client.subscribe("/esteira/receber/");
+    client.publish("/esteira/receber/", message.toString());
+
+});
+
 
 
 module.exports = (server) => server.use("/methods", router)

@@ -6,21 +6,23 @@ const mqtt = require("mqtt");
 const mtqqURL = "mtqq://broker.hivemq.com";
 const clientID = `mqtt_${Math.random().toString(16).slice(3)}`;
 process.setMaxListeners(0);
+
+
 require('events').EventEmitter.defaultMaxListeners = 0;
 const client = mqtt.connect(mtqqURL,{
     clientID,
     clean: true,
     connectTimeout: 4000,
-    username: 'server',
-    password: 'public',
+    username: 'EDUARDO',
+    password: 'EDUARDO',
     reconnectPeriod: 1000   
 });
 
 client.on('connect', () =>{
     console.log("Conectado ao servidor mqtt");
     
-    client.subscribe('/esteira/receber/', () =>{
-        console.log("subscribed on /esteira/receber/");
+    client.subscribe('/esteira/enviar/', () =>{
+        console.log("subscribed on /esteira/enviar/");
 
     });
 
