@@ -18,7 +18,7 @@ const client = mqtt.connect(mtqqURL,{
     reconnectPeriod: 1000   
 });
 
-client.on('connect', () =>{
+client.on('connect', async () =>{
     console.log("Conectado ao servidor mqtt");
     
     client.subscribe('/esteira/enviar/', () =>{

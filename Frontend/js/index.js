@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 const p = document.getElementById("s-stats");
 const inputId = document.getElementById("id");
 const inputPass = document.getElementById("password");
@@ -10,6 +8,7 @@ const listVerd = document.getElementById("qnt-verde");
 const listTempo = document.getElementById("tempo-dec");
 const lista = document.getElementById("lista");
 const buttonLogin = document.getElementById("btLogin");
+const msgMQTT = document.getElementById("msgMQTT");
 
 var azul =0;
 var vermelho = 0;
@@ -38,19 +37,18 @@ function submit(){
         inputId.style.display = "none";
         inputPass.style.display = "none";
         buttonLogin.style.display = "none";
+        msgMQTT.style.display = "block"
     });
     
 }
 
 function mqttMsg(){
     axios({
-        method: post,
-        url: url + "methods/mqtt/post",
+        method: "post",
+        url: url + "/methods/mqtt/post",
         data:{
             msg: document.getElementById("msgMqtt").value 
         }
-    }).then(async (response) => {
-        console.log("foi");
     })
 
     
