@@ -27,7 +27,7 @@ client.on('connect', async () =>{
     });
 
 })
-client.on("message" ,( topic , payload)  =>{
+client.on("message" ,async( topic , payload)  =>{
     console.log("mensagem:", payload.toString());
 });
 

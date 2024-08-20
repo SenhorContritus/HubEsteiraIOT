@@ -22,7 +22,7 @@ router.get("/mqtt", async (req, res) =>{
 router.get("/get", async (req,res) => {
 
     res.send("SERVER:ONLINE");
-    console.log("Conexão estabelecida com o front");
+    //console.log("Conexão estabelecida com o front");
 
 })
 

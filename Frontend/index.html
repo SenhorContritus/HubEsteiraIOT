@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
     <title>Esteira IOT</title>
 </head>
 <body>
@@ -11,24 +12,32 @@
 
         SERVER:OFFLINE
     </p>
-    <input id="id"type="text" placeholder="id">
-    <input id="password" type="password" placeholder="password">
-    <input id="btLogin" type="button" value="a" onclick="submit()">
-
-    <ul id="lista" style="display: none;">
-        <li><div>Total: <span id="qnt-objetos"></span></div></li>
-        <li><div>Azul: <span id="qnt-azul"></span></div></li>
-        <li><div>Vermelho: <span id="qnt-vermelho"></span></div></li>
-        <li><div>Verde: <span id="qnt-verde"></span></div></li>
-        <li><div>Tempo restante: <span id="tempo-dec"></span></div></li>
-    </ul>
-    <div id="msgMQTT" style="display: none;">
-        <label for="input">Mensagem:</label>
-        <input type="text" id="msgMqtt">
-        <input type="button" onclick="mqttMsg()" value="">
+    <div class="divLogin">
+        <p>
+          Esteira IOT  
+        </p>
+        <div class="divInput">
+            <input id="id"type="text" placeholder="id">
+            <input id="password" type="password" placeholder="password">
+        </div>
+        <input id="btLogin" type="button" value="Login" onclick="submit()">
     </div>
+
+    <section class="secCont">
+        <ul id="lista" style="display: none;">
+            <li><div>Total: <span id="qnt-objetos"></span></div></li>
+            <li><div>Azul: <span id="qnt-azul"></span></div></li>
+            <li><div>Vermelho: <span id="qnt-vermelho"></span></div></li>
+            <li><div>Verde: <span id="qnt-verde"></span></div></li>
+            <li><div>Tempo restante: <span id="tempo-dec"></span></div></li>
+        </ul>
+        <div id="msgMQTT" style="display: block;">
+            <input type="checkbox" onclick="" value="">
+        </div>
+    </section>
     
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="./js/index.js"></script>
    
 </body>

@@ -1,14 +1,14 @@
-const p = document.getElementById("s-stats");
-const inputId = document.getElementById("id");
-const inputPass = document.getElementById("password");
-const listQnt  =  document.getElementById("qnt-objetos");
-const listVerm = document.getElementById("qnt-vermelho");
-const listAzul = document.getElementById("qnt-azul");
-const listVerd = document.getElementById("qnt-verde");
-const listTempo = document.getElementById("tempo-dec");
-const lista = document.getElementById("lista");
-const buttonLogin = document.getElementById("btLogin");
-const msgMQTT = document.getElementById("msgMQTT");
+const pStats = $("#s-stats");
+const inputId = $("#id");
+const inputPass = $("#password");
+const listQnt  =  $("#qnt-objetos");
+const listVerm = $("#qnt-vermelho");
+const listAzul = $("#qnt-azul");
+const listVerd = $("#qnt-verde");
+const listTempo = $("#tempo-dec");
+const lista = $("#lista");
+const buttonLogin = $("#btLogin");
+const btMQTT = $("#btMQTT");
 
 var azul =0;
 var vermelho = 0;
@@ -33,73 +33,78 @@ function submit(){
     }).then(async(response) =>{
         console.log(response);
         var isLogged = true;
-        lista.style.display = "block";
-        inputId.style.display = "none";
-        inputPass.style.display = "none";
-        buttonLogin.style.display = "none";
-        msgMQTT.style.display = "block"
+        if(isLogged){
+            $('.divLogin').css('display', 'none')
+        }
     });
     
 }
 
-function mqttMsg(){
+function mqttMsg(state){
     axios({
         method: "post",
         url: url + "/methods/mqtt/post",
         data:{
-            msg: document.getElementById("msgMqtt").value 
+            msg: state
         }
     })
-
-    
 }
 
-axios({
-    method: "get",
-    url: url+"/methods/get"
-}).then((response) => {
-    console.log(response.data);
-    p.innerHTML = response.data;
-});
+btMQTT.on('click',() => {
+    if(btMQTT.is(':checked')){
+        console.log("ligar")
+    }else{
+        console.log("Desligar");
+    }
+})
+document.getElementById('btMQTT').addEventListener('ch')
 
 
 
 setInterval(() => {
-    try {
-        axios({
-            method:"get",
-            url:url+"/methods/mqtt"
-        }).then((response) => {
-            const data = response.data;
-            const valor = data.valor;
-            const valSplit = valor.split(",");
-            console.log(valSplit);
+    axios({
+        method: "get",
+        url: url+"/methods/get"
+    }).then((response) => {
+        console.log(response.data);
+        pStats.html(response.data);
+    }).catch((err) => {
+        pStats.html("SERVER:OFFLINE")
+    })
+    
+    axios({
+        method:"get",
+        url:url+"/methods/mqtt"
+    }).then((response) => {
+        const data = response.data;
+        const valor = data.valor;
+        const valSplit = valor.split(",");
+        console.log(valSplit);
 
 
-            if(valSplit[0] === "blue" )
-            {
-                azul = valSplit[1];
-                total = valSplit[2];
-                listAzul.innerHTML = azul;
-                listQnt.innerHTML = total;
+        if(valSplit[0] === "blue" )
+        {
+            azul = valSplit[1];
+            total = valSplit[2];
+            listAzul.innerHTML = azul;
+            listQnt.innerHTML = total;
 
-            }else if(valSplit[0] === "green"){
+        }else if(valSplit[0] === "green"){
 
-                verde = valSplit[1];
-                total = valSplit[2];
-                listVerd.innerHTML = verde;
-                listQnt.innerHTML = total;
+            verde = valSplit[1];
+            total = valSplit[2];
+            listVerd.innerHTML = verde;
+            listQnt.innerHTML = total;
 
-            }else if(valSplit[0] === "red"){
-                vermelho = valSplit[1];
-                total = valSplit[2];
-                listVerm.innerHTML = vermelho;
-                listQnt.innerHTML = total;
-            }
-            
-            
-        })  
-    }catch (err) {
+        }else if(valSplit[0] === "red"){
+            vermelho = valSplit[1];
+            total = valSplit[2];
+            listVerm.innerHTML = vermelho;
+            listQnt.innerHTML = total;
+        }
+        
+        
+    }).catch((err) =>{
         console.log("Servidor foi de arrasta");
-    }
+    })
 },2000);
