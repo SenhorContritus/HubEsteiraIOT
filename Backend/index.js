@@ -9,7 +9,11 @@ process.setMaxListeners(0);
 
 
 require('events').EventEmitter.defaultMaxListeners = 0;
-const client = mqtt.connect(mtqqURL,{
+
+
+
+
+const client = mqtt.connect( mtqqURL,{
     clientID,
     clean: true,
     connectTimeout: 4000,
@@ -18,18 +22,20 @@ const client = mqtt.connect(mtqqURL,{
     reconnectPeriod: 1000   
 });
 
-client.on('connect', async () =>{
+
+
+client.on('connect', () =>{
     console.log("Conectado ao servidor mqtt");
     
-    client.subscribe('/esteira/enviar/', () =>{
-        console.log("subscribed on /esteira/enviar/");
+    client.subscribe('/esteira/receber/', () =>{
+        console.log("subscribed on /esteira/receber/");
 
     });
 
 })
-client.on("message" ,async( topic , payload)  =>{
+/*client.on("message" ,async( topic , payload)  =>{
     console.log("mensagem:", payload.toString());
-});
+});*/
 
 module.exports = client;
 

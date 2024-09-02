@@ -9,7 +9,6 @@ const listTempo = $("#tempo-dec");
 const lista = $("#lista");
 const buttonLogin = $("#btLogin");
 const btMQTT = $("#btMQTT");
-
 var azul =0;
 var vermelho = 0;
 var verde =0;
@@ -52,16 +51,15 @@ function mqttMsg(state){
 
 btMQTT.on('click',() => {
     if(btMQTT.is(':checked')){
-        console.log("ligar")
+        mqttMsg("ligar")
     }else{
-        console.log("Desligar");
+        mqttMsg("desligar")
     }
 })
-document.getElementById('btMQTT').addEventListener('ch')
 
 
 
-setInterval(() => {
+setInterval(async() => {
     axios({
         method: "get",
         url: url+"/methods/get"
@@ -72,9 +70,9 @@ setInterval(() => {
         pStats.html("SERVER:OFFLINE")
     })
     
-    axios({
+    /*axios({
         method:"get",
-        url:url+"/methods/mqtt"
+        url:url+"/methods/mqtt/message"
     }).then((response) => {
         const data = response.data;
         const valor = data.valor;
@@ -105,6 +103,5 @@ setInterval(() => {
         
         
     }).catch((err) =>{
-        console.log("Servidor foi de arrasta");
-    })
+    })*/
 },2000);

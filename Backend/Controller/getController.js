@@ -3,18 +3,23 @@ const router = express.Router();
 const ID = "admin";
 const PASS = "admin";
 const client = require("../index.js");
+const { error } = require("console");
 process.setMaxListeners(0);
 require('events').EventEmitter.defaultMaxListeners = 0;
 
-router.get("/mqtt", async (req, res) =>{
+router.get("/mqtt/message", async (req, res) =>{
 
     
     client.on("message" ,( topic , payload)  =>{
-        try {
-            res.status(200).json({valor : payload.toString()});
-        } catch (error) {
-            
+        
+        if(!payload){
+            return res.status(400).json({
+                status:"error"
+            })
         }
+
+        //res.status(200).json({message: payload.toString()});
+
     });
 
 });
@@ -48,10 +53,20 @@ router.post("/post", async (req, res) =>{
 
 router.post("/mqtt/post" , async (req,res) =>{
 
-    const response = await req.body;
+    if(!req.body.msg){
+        return res.status(400).json({
+            status:error
+        })
+    }
+    const response = req.body;
     var message = response.msg;
     client.subscribe("/esteira/receber/");
     client.publish("/esteira/receber/", message.toString());
+    res.status(200).json({
+        status: "success"
+    });
+
+    
 
 });
 
