@@ -24,14 +24,16 @@
     </div>
 
     <section class="secCont">
-        <ul id="lista" style="display: none;">
-            <li><div>Total: <span id="qnt-objetos"></span></div></li>
-            <li><div>Azul: <span id="qnt-azul"></span></div></li>
-            <li><div>Vermelho: <span id="qnt-vermelho"></span></div></li>
-            <li><div>Verde: <span id="qnt-verde"></span></div></li>
-            <li><div>Tempo restante: <span id="tempo-dec"></span></div></li>
-        </ul>
-        <div id="msgMQTT" style="display: block;">
+        <div style="width: 100%;">
+            <ul id="lista"></ul>
+                <li><div>Total: <span id="qnt-objetos"></span></div></li>
+                <li><div>Azul: <span id="qnt-azul"></span></div></li>
+                <li><div>Vermelho: <span id="qnt-vermelho"></span></div></li>
+                <li><div>Verde: <span id="qnt-verde"></span></div></li>
+            </ul>
+        </div>
+        
+        <div id="msgMQTT" style="display: flex;">
             <input type="checkbox" id="btMQTT" value="">
         </div>
     </section>
